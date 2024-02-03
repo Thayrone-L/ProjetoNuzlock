@@ -15,3 +15,6 @@ class Desafio(Base):
     # Relação muitos-para-um entre Desafio e Usuario
     usuario_id = Column(Integer, ForeignKey('Usuario.id'))
     usuario = relationship('Usuario', back_populates='desafios')
+
+    # Relação muitos-para-muitos entre Desafio e Equipe
+    equipes = relationship('EquipeDesafio', back_populates='desafio')
