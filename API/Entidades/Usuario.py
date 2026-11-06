@@ -4,6 +4,17 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+class UsuarioTemporario(Base):
+    __tablename__ = 'usuarios_temporarios'
+    
+    id = Column(Integer, primary_key=True)
+    nome = Column(String, nullable=False)
+    email = Column(String, unique=True, nullable=False)
+    senha_hash = Column(String)
+    codigo = Column(String, nullable=False)  # Código para verificação
+    data_criacao = Column(DateTime, server_default='CURRENT_TIMESTAMP')
+    ultima_atualizacao = Column(DateTime, onupdate='CURRENT_TIMESTAMP')
+
 class Usuario(Base):
     __tablename__ = 'Usuario'
     
